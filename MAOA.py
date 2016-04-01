@@ -69,6 +69,7 @@ for feature in seq_record.features :
 #   translate the sequence. Note: when creating a sequence objects, the
 #   codons must be convereted to a string using the 'str' function 
 ##########################################################################
+print seq_record.features
 print "1. The gene is on chromosome: "
 print "2. The first 5 nucleotides are: ", "ANSWER HERE"
 print "3. The number of exons contained is: ", "ANSWER HERE"
