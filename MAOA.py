@@ -33,8 +33,6 @@ seq_record = next(iter)
 print "seq length = ", len(seq_record)
 print 
 
-
-
 # loop through each of the features
 for feature in seq_record.features :
 
@@ -69,10 +67,15 @@ for feature in seq_record.features :
 #   translate the sequence. Note: when creating a sequence objects, the
 #   codons must be convereted to a string using the 'str' function 
 ##########################################################################
-print seq_record.features
-print "1. The gene is on chromosome: "
-print "2. The first 5 nucleotides are: ", "ANSWER HERE"
-print "3. The number of exons contained is: ", "ANSWER HERE"
-print "4. The last 3 codons of the protein are: ", "ANSWER HERE"
-print "5. The codons code for: ", "ANSWER HERE"
 
+print "1. The gene is on chromosome: ", seq_record.features[0].qualifiers['chromosome'][0]
+firstFive = seq_record.seq[0:5]
+print "2. The first 5 nucleotides are: ", firstFive
+exonCount = 0
+for feature in seq_record.features :
+    if feature.type == "exon" :
+        exonCount += 1
+print "3. The number of exons contained is: ", exonCount
+lastNine = seq_record.seq[len(seq_record.seq)-9:len(seq_record.seq)]
+print "4. The last 3 codons of the protein are: ", lastNine
+print "5. The codons code for: ", Seq(str(lastNine)).translate()
